@@ -23,22 +23,22 @@ import Text.Pandoc.Highlighting (Style, breezeDark, styleToCss)
 -- PERSONALIZATION
 
 mySiteName :: String
-mySiteName = "My Site Name"
+mySiteName = "N30F4CT0RY"
 
 mySiteRoot :: String
-mySiteRoot = "https://my-site.com"
+mySiteRoot = "https://neofactory.ch"
 
 myFeedTitle :: String
-myFeedTitle = "My Feed Title"
+myFeedTitle = "N30F4CT0RY"
 
 myFeedDescription :: String
-myFeedDescription = "My Site Description"
+myFeedDescription = "NEO Factory is The New Factory."
 
 myFeedAuthorName :: String
-myFeedAuthorName = "My Name"
+myFeedAuthorName = "Contributors of Factory"
 
 myFeedAuthorEmail :: String
-myFeedAuthorEmail = "me@myemail.com"
+myFeedAuthorEmail = "robot@factory.ch"
 
 myFeedRoot :: String
 myFeedRoot = mySiteRoot
@@ -101,6 +101,18 @@ main = hakyllWith config $ do
         >>= loadAndApplyTemplate "templates/default.html" ctx
 
   match "index.html" $ do
+    route idRoute
+    compile $ do
+      let indexCtx =
+              constField "root" mySiteRoot
+              <> constField "feedTitle" myFeedTitle
+              <> constField "siteName" mySiteName
+              <> defaultContext
+      getResourceBody
+        >>= applyAsTemplate indexCtx
+        >>= loadAndApplyTemplate "templates/default.html" indexCtx
+
+  match "gallery.html" $ do
     route idRoute
     compile $ do
       posts <- recentFirst =<< loadAll "posts/*"

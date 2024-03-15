@@ -1,0 +1,29 @@
+---
+desc: "This is the Gallery of NEO Factory The New Factory."
+image: "./images/branding_2024_square.png"
+lang: "en"
+stylesheet: "default"
+title: "N3OF4CT0RY"
+---
+
+<div class="foo">
+<header>
+  <center>
+    <h1>NEOFactory</h1>
+  </center>
+</header>
+<main>
+  <section>
+    <h2>The Gallery</h2>
+    Please have a seat and make yourself comfortable to visit of our collections.
+    <ul>
+      $for(posts)$
+        <li>
+          <div><a href=".$url$">$title$</a></div>
+          <small>$date$</small>
+        </li>
+      $endfor$
+    </ul>
+  </section>
+</main>
+</div>
